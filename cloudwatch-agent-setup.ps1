@@ -13,7 +13,8 @@ if (Test-Path -Path "$env:USERPROFILE\Desktop\amazon-cloudwatch-agent.msi") {
 msiexec /i "$env:USERPROFILE\Desktop\amazon-cloudwatch-agent.msi"
 
 # Descargar el archivo de configuración desde GitHub
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/FernandoFH/AGDate/main/config.json" -OutFile "$env:ProgramFiles\Amazon\AmazonCloudWatchAgent\config.json"
+# Invoke-WebRequest -Uri "https://raw.githubusercontent.com/FernandoFH/AGDate/main/config.json" -OutFile "$env:ProgramFiles\Amazon\AmazonCloudWatchAgent\config.json"
+Invoke-WebRequest -Uri "https://github.com/FernandoFH/AGDate/blob/main/config.json" -OutFile "$env:ProgramFiles\Amazon\AmazonCloudWatchAgent\config.json"
 
 # Ejecutar el comando de configuración del agente de CloudWatch
 & "$env:ProgramFiles\Amazon\AmazonCloudWatchAgent\amazon-cloudwatch-agent-ctl.ps1" -a fetch-config -m ec2 -c "file:$env:ProgramFiles\Amazon\AmazonCloudWatchAgent\config.json" -s
