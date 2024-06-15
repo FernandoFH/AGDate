@@ -1,27 +1,51 @@
 {
-	"metrics": {
-		"append_dimensions": {
-			"AutoScalingGroupName": "${aws:AutoScalingGroupName}",
-			"ImageId": "${aws:ImageId}",
-			"InstanceId": "${aws:InstanceId}",
-			"InstanceType": "${aws:InstanceType}"
-		},
-		"metrics_collected": {
-			"LogicalDisk": {
-				"measurement": [
-					"% Free Space"
-				],
-				"metrics_collection_interval": 60,
-				"resources": [
-					"*"
-				]
-			},
-			"Memory": {
-				"measurement": [
-					"% Committed Bytes In Use"
-				],
-				"metrics_collection_interval": 60
-			}
-		}
-	}
+    "metrics": {
+        "append_dimensions": {
+            "AutoScalingGroupName": "${aws:AutoScalingGroupName}",
+            "ImageId": "${aws:ImageId}",
+            "InstanceId": "${aws:InstanceId}",
+            "InstanceType": "${aws:InstanceType}"
+        },
+        "metrics_collected": {
+            "cpu": {
+                "measurement": [
+                    "cpu_usage_idle",
+                    "cpu_usage_iowait",
+                    "cpu_usage_user",
+                    "cpu_usage_system"
+                ],
+                "metrics_collection_interval": 60
+            },			
+	      "Memory": {
+                "measurement": [
+                    "% Committed Bytes In Use",
+		    "Available Bytes",
+                    "Committed Bytes",
+                    "Commit Limit"
+                ],
+                "metrics_collection_interval": 60
+            },
+            "LogicalDisk": {
+		"measurement": [
+		    "% Free Space"
+		   ],
+		"metrics_collection_interval": 60,
+		"resources": [
+			"*"
+		]
+	     },
+            "network": {
+                "measurement": [
+                    "network_in_bytes",
+                    "network_out_bytes",
+                    "network_in_packets",
+                    "network_out_packets"
+                ],
+                "metrics_collection_interval": 60,
+                "resources": [
+                    "*"
+                ]
+            }
+        }
+    }
 }
